@@ -6,16 +6,109 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Text transition challenge</title>
+  <style>
+    html {
+      display: flex;
+      height: 100%;
+    }
+
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex: 1;
+      font-family: Arial, sans-serif;
+    }
+
+    h2 {
+      background: black;
+      padding: 1.2em 2.2em;
+      font-size: 5vh;
+      font-weight: bold;
+      overflow: hidden;
+      color: white;
+    }
+
+    h2 span {
+      display: block;
+      overflow: hidden;
+      line-height: 5vh;
+    }
+
+    h2 b {
+      display: block;
+      transform: translateY(150%);
+      opacity: 0;
+      transition-duration: .25s;
+      transition-property: transform, opacity;
+      transition-delay: var(--delay);
+      white-space: nowrap;
+    }
+
+    h2 b.in {
+      transform: translateY(0%);
+      transition-timing-function: ease-out;
+      opacity: 1;
+    }
+
+    h2 b.out {
+      transform: translateY(-90%);
+      transition-timing-function: ease-in;
+      opacity: 0;
+    }
+
+  </style>
 </head>
 
 <body>
 
 
-  <h2>
-    Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit quae perspiciatis quis accusantium, excepturi maxime
-    quam facere asperiores ducimus aut molestias, deleniti voluptatem unde illo! Dolores minus facilis assumenda maxime!
-  </h2>
+  <h2>Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit quae perspiciatis quis accusantium, excepturi maxime quam facere asperiores ducimus aut molestias, deleniti voluptatem unde illo! Dolores minus facilis assumenda maxime!</h2>
 
+  <script>
+    const initialise = () => {
+      let animating = false;
+
+      const
+        container = document.querySelector('h2'),
+        lineLength = 45,
+        pattern = new RegExp(`([^\\n]{1,${lineLength}})(\\s|$)`, 'g');
+
+      container.innerHTML = container.textContent.replace(pattern, '<span><b>$1</b></span>\n');
+
+      const elements = container.querySelectorAll('b');
+      elements.forEach((element, idx) => {
+        element.style = `--delay: ${0.04 * (idx + 1)}s`;
+
+        element.addEventListener('transitionend', () => {
+          if (element.classList.contains('in')) {
+            setTimeout(() => {
+              element.classList.remove('in');
+              element.classList.add('out');
+            }, 500);
+          }
+
+          if (element.classList.contains('out')) {
+            element.classList.remove('out');
+          }
+
+          animating = !!element.nextElementSibling;
+        });
+      });
+
+      container.addEventListener('mouseenter', () => {
+        if (animating) return;
+
+        animating = true;
+
+        elements.forEach(element => {
+          element.classList.add('in');
+        });
+      });
+    };
+
+    document.addEventListener('DOMContentLoaded', initialise);
+  </script>
 </body>
 
 </html>

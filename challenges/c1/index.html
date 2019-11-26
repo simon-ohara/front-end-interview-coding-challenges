@@ -34,7 +34,7 @@
         opacity: 0;
         position: absolute;
         display: block;
-        transform: translate3d(0,-10px,0);
+        transform: translateY(-10px);
         transition: all .15s ease-in-out;
       }
 
@@ -62,7 +62,7 @@
       .main-area:hover:after,
       .main-area:hover:before {
         opacity: 1;
-        transform: translate3d(0,0,0);
+        transform: translateY(0);
       }
     </style>
   </head>
@@ -72,6 +72,6 @@
     <div class="main-area" aria-label="I'm a popup">
       Hover me to show pop-up
     </div>
-    
+
   </body>
 </html>

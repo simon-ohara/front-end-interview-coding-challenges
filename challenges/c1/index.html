@@ -10,8 +10,6 @@
       html {
         display: flex;
         height: 100%;
-        align-items: stretch;
-        justify-content: center;
       }
 
       body {
@@ -35,6 +33,7 @@
       .main-area:after {
         opacity: 0;
         position: absolute;
+        display: block;
         transform: translate3d(0,-10px,0);
         transition: all .15s ease-in-out;
       }
@@ -50,7 +49,7 @@
       }
 
       .main-area:after {
-        content: "I'm a popup";
+        content: attr(aria-label);
         top: -3.1em;
         background: #333;
         color: white;
@@ -70,7 +69,7 @@
   <body>
 
     <!-- Modify the mark up to suit your needs -->
-    <div class="main-area">
+    <div class="main-area" aria-label="I'm a popup">
       Hover me to show pop-up
     </div>
     

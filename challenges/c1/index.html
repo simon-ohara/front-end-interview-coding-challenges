@@ -1,53 +1,73 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
+  <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Challenge 1</title>
 
     <style>
-        /* Write your CSS code here */
-html {
-    display: flex;
-    height: 100%;
-    align-items: stretch;
-    justify-content: center;
-    background: wheat;
-}
+      html {
+        display: flex;
+        height: 100%;
+        align-items: stretch;
+        justify-content: center;
+      }
 
-body {
-    display: flex;
-    border: solid 4px;
-    justify-content: center;
-    align-items: center;
-    flex: 1;
-}
-    
-.main-area:hover:before {
-    display: block;
-    position: absolute;
-    top: 0;
-}
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex: 1;
+      }
 
-.main-area:before {
-    content: "I'm a popup";
-    display: none;
-}
-.main-area {
-    align-items: center;
-    border: 1px dashed blue;
-    padding: 2em;
-}
+      .main-area {
+        align-items: center;
+        border: 1px dashed blue;
+        padding: 1.2em 2.2em;
+        position: relative;
+        display: flex;
+        justify-content: center;
+        cursor: pointer;
+      }
+
+      .main-area:before {
+        content: "";
+        display: none;
+        width: 0;
+        height: 0;
+        position: absolute;
+        top: -1.5em;
+        border-left: 10px solid transparent;
+        border-right: 10px solid transparent;
+        border-top: 20px solid #333;
+      }
+
+      .main-area:after {
+        content: "I'm a popup";
+        display: none;
+        position: absolute;
+        top: -3.1em;
+        background: #333;
+        color: white;
+        padding: 0.5em 0.6em;
+        border-radius: 5px;
+        border: 1px solid #131313;
+        font-weight: bold;
+      }
+
+      .main-area:hover:after,
+      .main-area:hover:before {
+        display: block;
+      }
     </style>
-
-</head>
-<body>
+  </head>
+  <body>
 
     <!-- Modify the mark up to suit your needs -->
     <div class="main-area">
-        Hover me to show pop-up
+      Hover me to show pop-up
     </div>
     
-</body>
+  </body>
 </html>

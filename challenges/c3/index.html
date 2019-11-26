@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Challenge 3</title>
+
+    <style>
+      @keyframes split-text {
+        0% {
+          transform: translateX(-100vw);
+        }
+
+        25% {
+          transform: translateX(0%);
+        }
+
+        75% {
+          transform: translateX(0%);
+        }
+
+        100% {
+          transform: translateX(100vw);
+        }
+      }
+
+      html {
+        display: flex;
+        height: 100%;
+      }
+
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex: 1;
+        font-family: Arial, sans-serif;
+      }
+
+      .main-area {
+        background: #ccc;
+        padding: 1.2em 2.2em;
+        font-size: 4em;
+        font-weight: bold;
+        text-transform: uppercase;
+        overflow: hidden;
+      }
+
+      .main-area:before,
+      .main-area:after {
+        content: attr(title);
+        display: block;
+        white-space: nowrap;
+      }
+
+      .main-area:before {
+        /* Love this tool: https://bennettfeely.com/clippy/ */
+        -webkit-clip-path: polygon(0 0, 100% 0, 100% 50%, 0 50%);
+        clip-path: polygon(0 0, 100% 0, 100% 50%, 0 50%);
+        color: red;
+        animation: split-text 2s infinite;
+        margin-bottom: -74px;
+      }
+
+      .main-area:after {
+        -webkit-clip-path: polygon(0 50%, 100% 50%, 100% 100%, 0 100%);
+        clip-path: polygon(0 50%, 100% 50%, 100% 100%, 0 100%);
+        animation: split-text 2s .1s infinite;
+      }
+    </style>
+  </head>
+  <body>
+
+    <div class="main-area" title="Awesome Alpha"></div>
+    
+  </body>
+</html>
